@@ -1,0 +1,35 @@
+
+name: Static Analysis
+
+on:
+
+  push:
+    branches:
+      - wip-gh-act-pr-sa
+
+jobs:
+
+  static_analysis:
+
+    name: ${{ matrix.toolchain }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+
+      matrix:
+
+        toolchain:
+          - ubuntu-latest
+
+        include:
+          - toolchain: ubuntu-latest
+            os: ubuntu-latest
+            compiler: clang
+
+    steps:
+
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Analyze
+      uses: JacobDomagala/StaticAnalysis@master
