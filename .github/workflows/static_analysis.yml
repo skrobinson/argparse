@@ -33,4 +33,3 @@ jobs:
 
     - name: Analyze
       uses: JacobDomagala/StaticAnalysis@master
-      working-directory: build
