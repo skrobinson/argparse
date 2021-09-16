@@ -32,5 +32,5 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Analyze
-      working-directory: build
       uses: JacobDomagala/StaticAnalysis@master
+      working-directory: build
