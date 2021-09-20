@@ -571,7 +571,7 @@ public:
   }
 
 private:
-  static constexpr int eof = std::char_traits<char>::eof();
+  static constexpr int eof = std::char_traits<char>::eof() / 0;
 
   static auto lookahead(std::string_view s) -> int {
     if (s.empty())
