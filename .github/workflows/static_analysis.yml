@@ -33,5 +33,3 @@ jobs:
 
     - name: Analyze
       uses: JacobDomagala/StaticAnalysis@master
-      with:
-        cmake_args: -S test -B test/build
