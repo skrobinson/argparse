@@ -1,11 +1,7 @@
 
 name: Static Analysis
 
-on:
-
-  push:
-    branches:
-      - wip-gh-act-pr-sa
+on: pull_request
 
 jobs:
 
