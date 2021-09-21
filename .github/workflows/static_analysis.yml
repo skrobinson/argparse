@@ -29,3 +29,5 @@ jobs:
 
     - name: Analyze
       uses: JacobDomagala/StaticAnalysis@master
+      with:
+        clang_tidy_args: --extra-arg=-Iinclude --extra-arg=-std=c++17
