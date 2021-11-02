@@ -31,5 +31,5 @@ jobs:
       uses: JacobDomagala/StaticAnalysis@master
       with:
         clang_tidy_args: --extra-arg=-Iinclude --extra-arg=-std=c++17
-        cppcheck_args: --enable=all --inline-suppr --inconclusive --suppress=missingInclude --suppress=uninitMemberVar:argparse/test/doctest.hpp
+        cppcheck_args: --enable=all --inline-suppr --inconclusive --suppress=*:argparse/test/doctest.hpp
         init_script: tools/static_analysis_setup.sh
