@@ -33,3 +33,4 @@ jobs:
         clang_tidy_args: --extra-arg=-Iinclude --extra-arg=-std=c++17
         cppcheck_args: --verbose --enable=all --inline-suppr --inconclusive --suppress=missingInclude --suppress='*:argparse/test/d*.hpp'
         init_script: tools/static_analysis_setup.sh
+        verbose: true
