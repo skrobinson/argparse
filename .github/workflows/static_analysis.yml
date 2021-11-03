@@ -31,8 +31,8 @@ jobs:
       uses: JacobDomagala/StaticAnalysis@master
       with:
         clang_tidy_args: >-
-          --config-file=../.clang-tidy
-          --extra-arg=-I../include --extra-arg=-std=c++17
+          --config-file=$GITHUB_WORKSPACE/.clang-tidy
+          --extra-arg=-I$GITHUB_WORKSPACE/include --extra-arg=-std=c++17
         cppcheck_args: >-
           --enable=all --inconclusive --inline-suppr
           -i$GITHUB_WORKSPACE/test/main.cpp
