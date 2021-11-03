@@ -31,7 +31,7 @@ jobs:
       uses: JacobDomagala/StaticAnalysis@master
       with:
         clang_tidy_args: --extra-arg=-Iinclude --extra-arg=-std=c++17
-        cppcheck_args: >
+        cppcheck_args: >-
           --enable=all --inconclusive --inline-suppr
           -i$GITHUB_WORKSPACE/test/main.cpp
           -i$GITHUB_WORKSPACE/test/test_*.cpp
