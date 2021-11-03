@@ -30,7 +30,9 @@ jobs:
     - name: Analyze
       uses: JacobDomagala/StaticAnalysis@master
       with:
-        clang_tidy_args: --extra-arg=-Iinclude --extra-arg=-std=c++17
+        clang_tidy_args: >-
+          --config-file=../.clang-tidy
+          --extra-arg=-I../include --extra-arg=-std=c++17
         cppcheck_args: >-
           --enable=all --inconclusive --inline-suppr
           -i$GITHUB_WORKSPACE/test/main.cpp
