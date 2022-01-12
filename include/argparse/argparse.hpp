@@ -31,6 +31,7 @@ SOFTWARE.
 #pragma once
 #include <algorithm>
 #include <any>
+#include <array>
 #include <cerrno>
 #include <charconv>
 #include <cstdlib>
