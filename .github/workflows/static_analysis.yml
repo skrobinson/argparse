@@ -40,3 +40,4 @@ jobs:
           -i$GITHUB_WORKSPACE/pr_tree/test/test_*.cpp
           --suppress=missingInclude
           --suppress='*:$GITHUB_WORKSPACE/pr_tree/test/doctest.hpp'
+        init_script: tools/static_analysis_setup.sh
