@@ -15,6 +15,7 @@
 * Single header file
 * Requires C++17
 * MIT License
+* Excellent test coverage
 
 ## Quick Start
 
