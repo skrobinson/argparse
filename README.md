@@ -16,6 +16,7 @@
 * Requires C++17
 * MIT License
 * Excellent test coverage
+* This README
 
 ## Quick Start
 
