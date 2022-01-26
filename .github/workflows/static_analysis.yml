@@ -32,7 +32,7 @@ jobs:
       with:
         verbose: true
         clang_tidy_args: >-
-          --config-file=../.clang-tidy
+          --config-file=$GITHUB_WORKSPACE/.clang-tidy
           --extra-arg=-Iinclude --extra-arg=-std=c++17
         cppcheck_args: >-
           --enable=all --inconclusive --inline-suppr
