@@ -32,12 +32,12 @@ jobs:
       with:
         verbose: true
         clang_tidy_args: >-
-          --config-file=/github/workspace/.clang-tidy
-          --extra-arg=-I/github/workspace/pr_tree/include --extra-arg=-std=c++17
+          --config-file=$GITHUB_WORKSPACE/.clang-tidy
+          --extra-arg=-I$GITHUB_WORKSPACE/include --extra-arg=-std=c++17
         cppcheck_args: >-
           --enable=all --inconclusive --inline-suppr
-          -i/github/workspace/pr_tree/test/main.cpp
-          -i/github/workspace/pr_tree/test/test_*.cpp
+          -i$GITHUB_WORKSPACE/test/main.cpp
+          -i$GITHUB_WORKSPACE/test/test_*.cpp
           --suppress=missingInclude
-          --suppress='*:/github/workspace/pr_tree/test/doctest.hpp'
+          --suppress='*:$GITHUB_WORKSPACE/test/doctest.hpp'
         init_script: tools/static_analysis_setup.sh
