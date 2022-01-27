@@ -36,8 +36,6 @@ jobs:
           --extra-arg=-I$GITHUB_WORKSPACE/include --extra-arg=-std=c++17
         cppcheck_args: >-
           --enable=all --inconclusive --inline-suppr
-          -i$GITHUB_WORKSPACE/test/main.cpp
-          -i$GITHUB_WORKSPACE/test/test_*.cpp
           --suppress=missingInclude
           --suppress='*:$GITHUB_WORKSPACE/test/doctest.hpp'
         init_script: tools/static_analysis_setup.sh
