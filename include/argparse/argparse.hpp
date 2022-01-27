@@ -175,15 +175,15 @@ enum class chars_format {
   general = fixed | scientific
 };
 
-struct consume_hex_prefix_result {
+struct Consume_hex_prefix_result {
   bool is_hexadecimal;
   std::string_view rest;
 };
 
 using namespace std::literals;
 
-constexpr auto consume_hex_prefix(std::string_view s)
-    -> consume_hex_prefix_result {
+constexpr auto Consume_hex_prefix(std::string_view s)
+    -> Consume_hex_prefix_result {
   if (starts_with("0x"sv, s) || starts_with("0X"sv, s)) {
     s.remove_prefix(2);
     return {true, s};
@@ -219,7 +219,7 @@ template <class T, auto Param = 0> struct parse_number {
 
 template <class T> struct parse_number<T, 16> {
   auto operator()(std::string_view s) -> T {
-    if (auto [ok, rest] = consume_hex_prefix(s); ok)
+    if (auto [ok, rest] = Consume_hex_prefix(s); ok)
       return do_from_chars<T, 16>(rest);
     else
       throw std::invalid_argument{"pattern not found"};
@@ -228,7 +228,7 @@ template <class T> struct parse_number<T, 16> {
 
 template <class T> struct parse_number<T> {
   auto operator()(std::string_view s) -> T {
-    if (auto [ok, rest] = consume_hex_prefix(s); ok)
+    if (auto [ok, rest] = Consume_hex_prefix(s); ok)
       return do_from_chars<T, 16>(rest);
     else if (starts_with("0"sv, s))
       return do_from_chars<T, 8>(rest);
@@ -268,7 +268,7 @@ template <class T> inline auto do_strtod(std::string const &s) -> T {
 
 template <class T> struct parse_number<T, chars_format::general> {
   auto operator()(std::string const &s) -> T {
-    if (auto r = consume_hex_prefix(s); r.is_hexadecimal)
+    if (auto r = Consume_hex_prefix(s); r.is_hexadecimal)
       throw std::invalid_argument{
           "chars_format::general does not parse hexfloat"};
 
@@ -278,7 +278,7 @@ template <class T> struct parse_number<T, chars_format::general> {
 
 template <class T> struct parse_number<T, chars_format::hex> {
   auto operator()(std::string const &s) -> T {
-    if (auto r = consume_hex_prefix(s); !r.is_hexadecimal)
+    if (auto r = Consume_hex_prefix(s); !r.is_hexadecimal)
       throw std::invalid_argument{"chars_format::hex parses hexfloat"};
 
     return do_strtod<T>(s);
@@ -287,7 +287,7 @@ template <class T> struct parse_number<T, chars_format::hex> {
 
 template <class T> struct parse_number<T, chars_format::scientific> {
   auto operator()(std::string const &s) -> T {
-    if (auto r = consume_hex_prefix(s); r.is_hexadecimal)
+    if (auto r = Consume_hex_prefix(s); r.is_hexadecimal)
       throw std::invalid_argument{
           "chars_format::scientific does not parse hexfloat"};
     if (s.find_first_of("eE") == s.npos)
@@ -300,7 +300,7 @@ template <class T> struct parse_number<T, chars_format::scientific> {
 
 template <class T> struct parse_number<T, chars_format::fixed> {
   auto operator()(std::string const &s) -> T {
-    if (auto r = consume_hex_prefix(s); r.is_hexadecimal)
+    if (auto r = Consume_hex_prefix(s); r.is_hexadecimal)
       throw std::invalid_argument{
           "chars_format::fixed does not parse hexfloat"};
     if (s.find_first_of("eE") != s.npos)
