@@ -17,6 +17,7 @@
 * MIT License
 * Excellent test coverage
 * This README
+* Responsive upstream
 
 ## Quick Start
 
