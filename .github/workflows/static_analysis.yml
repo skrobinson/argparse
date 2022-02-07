@@ -28,7 +28,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Analyze
-      uses: JacobDomagala/StaticAnalysis@master
+      uses: skrobinson/StaticAnalysis@feat-move-init_script-exec
       with:
         verbose: true
         clang_tidy_args: >-
@@ -39,3 +39,4 @@ jobs:
           --suppress=missingInclude
           --suppress='*:$GITHUB_WORKSPACE/test/doctest.hpp'
         exclude_dir: test
+        init_script: tools/static_analysis_setup.sh
