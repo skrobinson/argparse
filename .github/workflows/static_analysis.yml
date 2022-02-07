@@ -28,7 +28,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Analyze
-      uses: skrobinson/StaticAnalysis@wip-changes-for-argparse
+      uses: skrobinson/StaticAnalysis@stable-for-argparse
       with:
         verbose: true
         clang_tidy_args: >-
@@ -38,5 +38,4 @@ jobs:
           --enable=all --inconclusive --inline-suppr
           --suppress=missingInclude
           --suppress='*:$GITHUB_WORKSPACE/test/doctest.hpp'
-        exclude_dir: test
         init_script: tools/static_analysis_setup.sh
