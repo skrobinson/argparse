@@ -28,7 +28,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Analyze
-      uses: skrobinson/StaticAnalysis@feat-move-init_script-exec
+      uses: skrobinson/StaticAnalysis@wip-changes-for-argparse
       with:
         verbose: true
         clang_tidy_args: >-
