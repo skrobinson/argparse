@@ -38,4 +38,4 @@ jobs:
           --enable=all --inconclusive --inline-suppr
           --suppress=missingInclude
           --suppress='*:$GITHUB_WORKSPACE/test/doctest.hpp'
-        exclude_prefixes: test
+        exclude_dir: test
