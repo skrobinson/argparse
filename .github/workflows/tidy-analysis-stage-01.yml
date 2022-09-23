@@ -13,6 +13,13 @@ jobs:
     steps:
 
     - uses: actions/checkout@v3
+      with:
+        fetch-depth: 2
+
+    - name: Install clang-tidy
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y clang-tidy-12
 
     - name: Prepare compile_commands.json
       run: cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
@@ -21,7 +28,7 @@ jobs:
       run: mkdir clang-tidy-result
 
     - name: Analyze
-      run: git diff -U0 HEAD^ | clang-tidy-diff -p1 -path build -export-fixes clang-tidy-result/fixes.yml
+      run: git diff -U0 HEAD^ | clang-tidy-diff-12.py -p1 -path build -export-fixes clang-tidy-result/fixes.yml
 
     - name: Save PR metadata
       run: |
