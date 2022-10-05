@@ -373,7 +373,7 @@ class Argument {
   template <std::size_t N, std::size_t... I>
   explicit Argument(std::string_view prefix_chars,
                     std::array<std::string_view, N> &&a,
-                    std::index_sequence<I...>)
+                    std::index_sequence<I...> /*unused*/)
       : m_is_optional((is_optional(a[I], prefix_chars) || ...)),
         m_is_required(false), m_is_repeatable(false), m_is_used(false),
         m_prefix_chars(prefix_chars) {
