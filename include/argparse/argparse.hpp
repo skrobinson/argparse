@@ -75,16 +75,16 @@ template <typename T>
 static constexpr bool IsContainer = HasContainerTraits<T>::value;
 
 template <typename T, typename = void>
-struct has_streamable_traits : std::false_type {};
+struct HasStreamableTraits : std::false_type {};
 
 template <typename T>
-struct has_streamable_traits<
+struct HasStreamableTraits<
     T,
     std::void_t<decltype(std::declval<std::ostream &>() << std::declval<T>())>>
     : std::true_type {};
 
 template <typename T>
-static constexpr bool IsStreamable = has_streamable_traits<T>::value;
+static constexpr bool IsStreamable = HasStreamableTraits<T>::value;
 
 constexpr std::size_t repr_max_container_size = 5;
 
