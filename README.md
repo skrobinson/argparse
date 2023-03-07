@@ -559,7 +559,13 @@ The grammar follows `std::from_chars`, but does not exactly duplicate it. For ex
 
 ### Default Arguments
 
-`argparse` provides predefined arguments and actions for `-h`/`--help` and `-v`/`--version`. These default actions **exit** the program after displaying a help or version message, respectively. These defaults arguments can be disabled during `ArgumentParser` creation so that you can handle these arguments in your own way. (Note that a program name and version must be included when choosing default arguments.)
+`argparse` provides predefined arguments and actions for `-h`/`--help` and `-v`/`--version`.
+By default, these actions will **exit** the program after displaying a help or version message,
+respectively. This exit does not call destructors, skipping clean-up of taken resources.
+
+These default arguments can be disabled during `ArgumentParser` creation so
+that you can handle these arguments in your own way. (Note that a program name and
+version must be included when choosing default arguments.)
 
 ```cpp
 argparse::ArgumentParser program("test", "1.0", default_arguments::none);
@@ -574,9 +580,22 @@ program.add_argument("-h", "--help")
   .nargs(0);
 ```
 
-The above code snippet outputs a help message and continues to run. It does not support a `--version` argument.
+The above code snippet outputs a help message and continues to run.
+It does not support a `--version` argument.
 
-The default is `default_arguments::all` for included arguments. No default arguments will be added with `default_arguments::none`. `default_arguments::help` and `default_arguments::version` will individually add `--help` and `--version`.
+The default is `default_arguments::all` for included arguments. No default arguments will be
+added with `default_arguments::none`. `default_arguments::help` and `default_arguments::version`
+will individually add `--help` and `--version`.
+
+The default arguments can be used while disabling the default exit with these
+arguments. This forth argument to `ArgumentParser` (`exit_on_default_arguments`)
+is a bool flag with a default **true** value. The following call will retain
+`--help` and `--version`, but will not exit when those arguments are used.
+
+```cpp
+argparse::ArgumentParser program("test", "1.0", default_arguments::all, false)
+```
+
 
 ### Gathering Remaining Arguments
 
